@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const initialState = {
-  movieIds:['tt5013056','tt0108052','tt2179136'],
+  movieIds:['tt5013056','tt4154756','tt0816711'],
   moviesData:[],
   movieCollection:[],
   hasMore:true
@@ -15,10 +15,7 @@ export default function moviesReducer(state = initialState, action) {
       return {
         ...state,
         hasMore:setHasMore,
-        movieCollection:state.hasMore != true? state.movieCollection:state.movieCollection.concat(action.payload),
-        
-
-        
+        movieCollection:state.hasMore != true? state.movieCollection:state.movieCollection.concat(action.payload) 
       };
     }
     case 'getMoviesInfo': {
@@ -65,7 +62,11 @@ export function getMovies({title,year,id,page}) {
   return async function getMoviesThunk(dispatch, getState) {
     const params = { s:title,y:year,i:id,page:page }
     const response = await axios.get('http://www.omdbapi.com/?apikey=3b9f341f',{params:params})
-    dispatch({ type: 'getMoviesInfo', payload: response.data.Search })
+    if(id != '' && title == ''){
+      dispatch({ type: 'getMoviesInfo', payload: [response.data] })
+    } else{
+      dispatch({ type: 'getMoviesInfo', payload: response.data.Search })
+    }
    
   }
 }

@@ -20,8 +20,8 @@ function SearchMovie() {
 
   const handleSubmit = async event => {
     event.preventDefault();
-    if (title == '' ) {
-      alert("Please Enter movie title");
+    if (title == '' && id == '' ) {
+      alert("Please Enter movie title or movie id");
       return;
     }
     dispatch(getMovies({ title, year, id, page }))
@@ -66,7 +66,7 @@ function SearchMovie() {
           </Form.Row>
         </Form>
       </div>
-      <MovieCards title={title.length == 0 ? 'sniper' : title} />
+      <MovieCards title={title == '' && id == '' ? 'sniper' : title} />
     </div>
   );
 }

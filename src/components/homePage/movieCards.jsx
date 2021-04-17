@@ -37,7 +37,7 @@ const MovieCards = (props) => {
       dataLength={cards.length}
       next={fetchMovies}
       hasMore={hasMore}
-      loader={hasMore !=false ?<h4 className="cardLoader">Loading...</h4>:null}
+      loader={hasMore !=false || page == 1?<h4 className="cardLoader">Loading...</h4>:null}
     >{
         <Row>{
           cards.map((card, index) =>
