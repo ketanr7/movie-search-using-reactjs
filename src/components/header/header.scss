@@ -1,0 +1,47 @@
+.logo {
+	width: auto;
+	height: auto;
+}
+.smallLogo {
+	width: auto;
+	height: 27px;
+	margin-left: 10px;
+}
+.topNavbar {
+	height: 64px;
+	background-color: #000 !important;
+	opacity: 0.5;
+	position: absolute;
+	z-index: 2;
+	width: 100%;
+	color: #fff;
+	padding: 0 114px;
+	.nav-link {
+		color: #fff !important;
+		opacity: 0.9 !important;
+		&:hover {
+			color: #fff !important;
+			opacity: 1 !important;
+		}
+	}
+}
+@media (max-width: 575.98px) {
+	.topNavbar {
+		padding: 8px 16px;
+	}
+}
+@media (min-width: 577px) and (max-width: 767) {
+	.topNavbar {
+		padding: 0px 57px !important;
+	}
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+	.topNavbar {
+		padding: 0px 57px;
+	}
+}
+@media (min-width: 993px) and (max-width: 1199.98px) {
+	.topNavbar {
+		padding: 0px 80px;
+	}
+}
