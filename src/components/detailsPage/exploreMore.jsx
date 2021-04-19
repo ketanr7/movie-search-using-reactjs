@@ -26,7 +26,7 @@ const ExploreMore = (props) => {
           <Link to={`/details/${card.imdbID}`}>
             <Card.Body>
               <div className="cardDiv">
-                <div><img src={card.Poster != 'N/A' ? card.Poster:defaultImg} /></div>
+                <div><img src={card.Poster !== 'N/A' ? card.Poster:defaultImg} alt={card.Title}/></div>
                 <div className="extraDetails">
                   <Card.Title>{card.Title}</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">

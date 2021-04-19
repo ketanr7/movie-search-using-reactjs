@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Form, Col, Button } from 'react-bootstrap';
 import { getMovies } from './homePageSlice'
 import MovieCards from './movieCards';
@@ -8,19 +8,21 @@ import './searchMovie.scss'
 
 function SearchMovie() {
   const dispatch = useDispatch()
-  const [validated, setValidated] = useState(false);
+  const movieTitle = useSelector((state) => state.movies.title)
+  const movieImdbId = useSelector((state) => state.movies.id)
   const [searchData, setSearchData] = useState({
     title: '',
     year: '',
     id: '',
     page: 1
   });
+  let searchWith;
 
   const { title, year, id, page } = searchData;
 
   const handleSubmit = async event => {
     event.preventDefault();
-    if (title == '' && id == '' ) {
+    if (title === '' && id === '') {
       alert("Please Enter movie title or movie id");
       return;
     }
@@ -32,10 +34,22 @@ function SearchMovie() {
     setSearchData({ ...searchData, [name]: value });
   };
 
+
+
+  if (movieTitle === "" && movieImdbId === '') {
+    searchWith = <MovieCards title='sniper' id='' />
+  } else if (movieTitle) {
+    searchWith = <MovieCards title={movieTitle} id='' />
+  } else if (movieImdbId) {
+    searchWith = <MovieCards title='' id={movieImdbId} />
+  }
+
+
+
   return (
     <div>
       <div className="searchMovieContainer">
-        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+        <Form noValidate  onSubmit={handleSubmit}>
           <Form.Row>
             <Form.Group as={Col} md="3" controlId="validationCustom03">
               <Form.Control type="text" placeholder="Search Title" name="title" value={title}
@@ -66,9 +80,9 @@ function SearchMovie() {
           </Form.Row>
         </Form>
       </div>
-      <MovieCards title={title == '' && id == '' ? 'sniper' : title} />
+      {searchWith}
     </div>
   );
 }
 
-export default SearchMovie;
+export default SearchMovie

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
@@ -8,12 +8,11 @@ import defaultImg from '../../assets/default.jpg';
 import './movieDetails.scss'
 import ExploreMore from './exploreMore'
 
-import { fetchMovieDetails, exploreMoreMovies } from './detailsPageSlice'
+import { fetchMovieDetails } from './detailsPageSlice'
 
 const MovieDetails = (props) => {
   const dispatch = useDispatch()
   let history = useHistory();
-  const [actors, setActor] = useState([]);
 
   let id = props.movieId
 
@@ -39,7 +38,7 @@ const MovieDetails = (props) => {
           </div>
         </div>
         <div className="moviePoster">
-          <img src={movieInfo.Poster != 'N/A' ? movieInfo.Poster:defaultImg} />
+          <img src={movieInfo.Poster !== 'N/A' ? movieInfo.Poster:defaultImg} alt={movieInfo.Title}/>
         </div>
         <div className="movieData">
           <h1 className="movieTitle">{movieInfo.Title}</h1>

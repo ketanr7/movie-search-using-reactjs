@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import logo from '../../assets/buyceps.png';
 import smallLogo from '../../assets/TEST.png';
 import './header.scss';
